@@ -32,9 +32,9 @@ all: main.run
 # for a quick debug of processor or program running on it.
 proc_exe_logs: X0_Y0.pelog X1_Y0.pelog
 
-KERNEL_NAME ?=kernel_dram
+KERNEL_NAME ?=kernel_dram_device_allocated
 
-OBJECT_FILES=main.o bsg_set_tile_x_y.o bsg_printf.o kernel_dram.o
+OBJECT_FILES=main.o bsg_set_tile_x_y.o bsg_printf.o kernel_dram_device_allocated.o
 
 include ../../Makefile.include
 
