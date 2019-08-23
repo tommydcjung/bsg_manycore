@@ -1,8 +1,6 @@
 .DEFAULT_GOAL = all
 
-BENCHMARK_DIR = $(BSG_MANYCORE_DIR)/imports/greenlight/benchmarks/spec2000/CINT2000/300.twolf
-
-PROG_NAME = twolf
+BENCHMARK = 300.twolf
 
 BENCHMARK_OBJS = \
       acceptt.o addimp.o alignfeed.o buildimp.o changrid.o clean.o   \
