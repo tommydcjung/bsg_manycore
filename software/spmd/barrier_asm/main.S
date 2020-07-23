@@ -68,7 +68,7 @@ reduction:
 
   la t4, __bsg_x
   lw t4, 0(t4)
-  li t5, bsg_tiles_X-1
+  li t5, (bsg_tiles_X-1)
   bne t4, t5, __reduction_x_not_last
   // X = last
   csrrwi x0, CSR_SON_FADD, 0x09 // input = west, output = proc, 01_001
@@ -79,10 +79,10 @@ __reduction_last_loop:
   flw ft1, 4(t2)
   flw ft2, 8(t2)
   flw ft3, 12(t2)
-  //fadd.son ft0, ft0, ft8
-  //fadd.son ft1, ft1, ft8
-  //fadd.son ft2, ft2, ft8
-  //fadd.son ft3, ft3, ft8
+  //fadd.son ft0, ft0, ft4
+  //fadd.son ft1, ft1, ft4
+  //fadd.son ft2, ft2, ft4
+  //fadd.son ft3, ft3, ft4
   fsw ft0, 0(t3) 
   fsw ft1, 4(t3) 
   fsw ft2, 8(t3) 
@@ -131,14 +131,14 @@ __reduction_x_not_zero:
   csrrwi x0, CSR_SON_FADD, 0xa // input = west, output = east, 01_010
 
 __reduction_loop:
-  flw ft0, 0(t1)
-  flw ft1, 4(t1)
-  flw ft2, 8(t1)
-  flw ft3, 12(t1)
-  //fadd.son ft0, ft0, ft8
-  //fadd.son ft1, ft1, ft8
-  //fadd.son ft2, ft2, ft8
-  //fadd.son ft3, ft3, ft8
-  addi t1, t1, 16
-  bne t1, t3, __reduction_loop
+  flw ft0, 0(t2)
+  flw ft1, 4(t2)
+  flw ft2, 8(t2)
+  flw ft3, 12(t2)
+  //fadd.son ft0, ft0, ft4
+  //fadd.son ft1, ft1, ft4
+  //fadd.son ft2, ft2, ft4
+  //fadd.son ft3, ft3, ft4
+  addi t2, t2, 16
+  bne t1, t2, __reduction_loop
   ret
