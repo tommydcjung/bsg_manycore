@@ -26,23 +26,21 @@ barrier:
   lw t0, 0(t0)
   li t1, (bsg_tiles_X*bsg_tiles_Y)-1  
 
-  beq t0, t1, __barrier_last_tile
-  bne t0, x0, __barrier_end
+  beq t0, t1, __barrier_not_last_tile
+  // last tile
+  lui t0, 0x20000
+  or t0, a0, t0                       // root tile's reservation addr
+  sw t0, 0(t0)                        // wake up the root tile
+  j __barrier_end
+
+__barrier_not_last_tile:
+  bne t0, x0, __barrier_end           // middle tile skips to the end.
 
 __barrier_root_tile_loop:
   lr.w t0, 0(a0)
   bne t0, x0, __barrier_root_tile_end
   lr.w.aq t0, 0(a0)
   beq t0, x0, __barrier_root_tile_loop
-
-__barrier_root_tile_end:
-  //fbar.son f0, f0
-  ret
-
-__barrier_last_tile:
-  lui t0, 0x20000
-  or t0, a0, t0                       // root tile's reservation addr
-  sw t0, 0(t0)                        // wake up the root tile
 
 __barrier_end: 
   //fbar.son f0, f0

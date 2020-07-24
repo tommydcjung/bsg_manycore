@@ -49,9 +49,10 @@ __reduction_reconfig:
   la t4, __bsg_y
   lw t4, 0(t4)
   li t5, (bsg_tiles_Y-1)
-  // use where the accumulated data is.
+  // use the accumulated data for vertical.
   move t2, a1
   move t3, a1
+  addi t1, a1, 512
   bne t4, t5, __reduction_y_not_last
   // Y = last
   li t0, 1                      // set to vertical
