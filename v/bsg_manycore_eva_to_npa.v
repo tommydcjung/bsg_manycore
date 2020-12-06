@@ -134,12 +134,14 @@ module bsg_manycore_eva_to_npa
       // global-addr
       // x,y-cord and EPA is directly encoded in EVA.
       y_cord_o = y_cord_width_p'(global_addr.y_cord);
-      x_cord_o = x_cord_width_p'(global_addr.x_cord + start_x_cord_p);
+      x_cord_o = x_cord_width_p'(global_addr.x_cord);
       epa_o = {{(addr_width_p-epa_word_addr_width_gp){1'b0}}, global_addr.addr};
     end
     else if (is_tile_group_addr) begin
       // tile-group addr
       // tile-coordinate in the EVA is added to the tile-group origin register.
+      // From the programmer's perspective, the tile-group origin is not offsetted by start_x_cord_p.
+      // The eva-to-npa module includes the start_x_cord_p when translating tile-group eva to npa.
       y_cord_o = y_cord_width_p'(tile_group_addr.y_cord + tgo_y_i);
       x_cord_o = x_cord_width_p'(tile_group_addr.x_cord + tgo_x_i + start_x_cord_p);
       epa_o = {{(addr_width_p-epa_word_addr_width_gp){1'b0}}, tile_group_addr.addr};

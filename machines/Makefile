@@ -32,9 +32,6 @@ VCS_CFLAGS   += -CFLAGS "-DBASEJUMP_STL_DIR=$(BASEJUMP_STL_DIR)"
 DEFAULT_MACHINES = 16x8_ruche 16x8_mesh 16x8_crossbar 4x4_gs 4x4_no_dram 4x4_fast_fake 8x4 32x16_ruche
 
 
-# DEFAULT PARAMETERS
-BSG_MACHINE_START_X_CORD ?= 0
-
 .PHONY: all clean
 
 DEFAULT_TARGETS = $(foreach machine, $(DEFAULT_MACHINES),$(machine)/simv)
