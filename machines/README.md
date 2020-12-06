@@ -23,4 +23,6 @@ Machine.machine.include parameters
 - BSG_MACHINE_NETWORK_CFG               =   Manycore Network configuration (look at bsg_manycore_network_cfg_pkg.v)
 - BSG_MACHINE_RUCHE_FACTOR_X            =   Ruche Factor X. Only valid if network config is ruche.
 
+
+- BSG_MACHINE_START_X_CORD              =   X-coordinate of the leftmost tile.
 ```
